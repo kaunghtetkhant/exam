@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>computer engineering mutex concept - Google Search</title>
+    <link rel="shortcut icon" type="image/ico" href="images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<style type="text/css">
+    
+    body {
+    min-height: 100%;
+    position: relative;
+}
+
+#topbar {
+    display: flex;
+    height: 64px;
+    width: 100%;
+    align-items: flex-end;
+    position: fixed;
+    background-color: white;
+}
+
+#searchbarimage {
+    height: 30px;
+    padding: 0px 28px 10px 30px;
+    cursor: pointer;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: auto;
+}
+
+#searchbarmic {
+    height: 45px;
+    width: 35px;
+    margin-left: auto;
+    background-color: white;
+}
+
+#searchbarmic img {
+    height: 25px;
+}
+
+#searchbarbutton {
+    height: 45px;
+    width: 55px;
+    position: relative;
+    margin-right: -2px;
+    background-color: white;
+}
+
+#searchbarbutton svg {
+    height: 25px;
+    width: 35px;
+    position: relative;
+    left: -3px;
+}
+
+#searchbarbutton svg path {
+    fill: #4285F4
+}
+
+#searchbar {
+    width: 625px;
+    height: 45px;
+    border-radius: 100px;
+    border-color: lightgray;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 16px;
+    position: relative;
+    bottom: 5px;
+    overflow: hidden;
+    display: flex;
+    z-index: 100;
+}
+
+#searchbar:hover {
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+}
+
+#searchbar > input {
+    height: 45px;
+    border-style: none;
+    font-size: 16px;
+    line-height: 45px;
+    padding-left: 20px;
+    flex: 1;
+}
+
+#searchbar > input:focus {
+    outline: none;
+}
+
+#searchbar button {
+    border: none;
+    cursor: pointer;
+}
+
+#searchbar button:focus {
+    outline: none;
+}
+
+#boxesicon {
+    width: 25px;
+    height: 25px;
+    background-image: url('images/boxes.png');
+    opacity: 0.6;
+    background-size: 26px;
+    position: absolute;
+    right: 130px;
+    bottom: 14px;
+}
+
+#optionsmenuactive::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: #4285F4;
+    left: 5px;
+    bottom: 0px;
+}
+
+#optionsmenu2 {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    padding: 0px;
+    margin: 0px;
+    margin-left: 100px;
+}
+
+#optionsmenu2 li {
+    padding: 0px 10px 15px 20px;
+}
+
+#searchresultsarea {
+    margin-left: 150px;
+    font-family: 'Arial';
+}
+
+#searchresultsnumber {
+    font-size: 0.8rem;
+    color: gray;
+}
+
+.searchresult {
+    margin-left: 8px;
+}
+
+.searchresult h2 {
+    font-size: 19px;
+    line-height: 18px;
+    font-weight: normal;
+    color: rgb(29, 1, 189);
+    margin-bottom: 0px;
+    margin-top: 25px;
+}
+
+.searchresult a {
+    font-size: 14px;
+    line-height: 14px;
+    color: green;
+    margin-bottom: 0px;
+}
+
+.searchresult button {
+    font-size: 10px;
+    line-height: 14px;
+    color: green;
+    margin-bottom: 0px;
+    padding: 0px;
+    border-width: 0px;
+    background-color: white;
+}
+
+#bellicon {
+    width: 20px;
+    height: 20px;
+    background-color: rgb(105, 105, 105);
+    background-image: url('images/bell.png');
+    background-size: 12px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    border-radius: 30px;
+    position: absolute;
+    right: 90px;
+    bottom: 18px;
+}
+
+#profileimage {
+    border-radius: 50px;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    right: 40px;
+    bottom: 12px;
+}
+
+#optionsbar {
+    width: 100%;
+    height: 50px;
+    border-width: 0px;
+    border-bottom: 1px;
+    border-color: lightgray;
+    border-style: solid;
+    display: flex;
+    align-items: flex-end;
+    font-family: 'Arial';
+    font-size: 13px;
+    color: rgb(112, 112, 112);
+    padding-top: 64px;
+}
+
+#optionsmenu1 {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    padding: 0px;
+    margin: 0px;
+    margin-left: 150px;
+}
+
+#optionsmenu1 li {
+    padding: 0px 10px 15px 20px;
+}
+
+#optionsmenuactive {
+    color: #4285F4;
+    font-weight: bold;
+    position: relative;
+    z-index: -1;
+}
+
+.searchresult p {
+    width: 625px;
+    font-size: 13px;
+    margin-top: 0px;
+    color: rgb(82, 82, 82);
+}
+
+.relatedsearches h3 {
+    font-weight: normal;
+    font-size: 19px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.relatedlists ul {
+    list-style: none;
+    color: rgb(29, 1, 189);
+    padding-left: 0px;
+    font-size: 14px;
+    margin-bottom: 50px;
+}
+
+.relatedlists {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 300px;
+}
+
+.relatedlists ul li {
+    margin-bottom: 8px;
+}
+
+.pagelist {
+    list-style: none;
+    color: rgb(29, 135, 255);
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    margin-bottom: 30px;
+    margin-left: 100px;
+}
+
+.pagelistprevious::before {
+    content: '<';
+    display: block;
+    position: absolute;
+    right: 12px;
+    top: -35px;
+    color: rgb(29, 135, 255);
+    font-size: 20px;
+    transform: scale(0.7, 1.2);
+}
+
+.pagelistprevious::after {
+    content: '';
+    display: block;
+    position: absolute;
+    right: -40px;
+    top: -35px;
+    width: 40px;
+    height: 40px;
+    background-image: url('images/g.png');
+    background-repeat: no-repeat;
+    background-size: 28px;
+}
+
+.pagelistfirst {
+    margin-left: 20px;
+    font-size: 13px;
+}
+
+.pagelistnumber::before, .pagelistfirst::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: -2px;
+    top: -21px;
+    border-radius: 50px;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    z-index: 3;
+}
+
+.pagelistnumber::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: -6px;
+    top: -25px;
+    border-radius: 50px;
+    width: 18px;
+    height: 18px;
+    background-color: rgb(255, 196, 0);
+    z-index: 2;
+}
+
+.pagelistfirst::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: -6px;
+    top: -25px;
+    border-radius: 50px;
+    width: 18px;
+    height: 18px;
+    background-color: red;
+    z-index: 2;
+}
+
+.pagelist li {
+    margin-right: 15px;
+    position: relative;
+}
+
+.pagelistnext {
+    margin-left: 40px;
+    font-size: 13px;
+}
+
+.pagelistnext::before {
+    content: '>';
+    display: block;
+    position: absolute;
+    left: 5px;
+    top: -35px;
+    color: rgb(29, 135, 255);
+    font-size: 20px;
+    transform: scale(0.7, 1.2);
+}
+
+.pagelistnext::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: -55px;
+    top: -37px;
+    width: 50px;
+    height: 50px;
+    background-image: url('images/gle.png');
+    background-repeat: no-repeat;
+    background-size: 48px;
+}
+
+
+#footer {
+    background-color: rgb(238, 238, 238);
+    position: relative;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    font-size: 13px;
+    font-family: 'arial';
+    color: rgb(85, 85, 85);
+}
+
+#footermenu {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    margin-top: 0px;
+    margin-left: 135px;
+    margin-bottom: 0px;
+    padding-bottom: 10px;
+}
+
+#footermenu li {
+    padding-right: 30px;
+}
+
+#footerlocation {
+    display: flex;
+    direction: row;
+    margin-left: 175px;
+    position: relative;
+    top: -5px;
+}
+
+#footerlocation p:nth-of-type(1) {
+    font-weight: bold;
+}
+</style>
+
+<body>
+    <div id="header">
+        <div id="topbar">
+            <img id="searchbarimage" src="images/googlelogo_color_92x30dp.png" />
+            <div id="searchbar" type="text">
+                <input id="searchbartext" type="text" value="computer engineering mutex concept" />
+                <button id="searchbarmic">
+                    <img src="images/googlemic.png" />
+                </button>
+                <button id="searchbarbutton">
+                    <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path
+                            d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+
+            <div id="boxesicon"></div>
+            <div id="bellicon"></div>
+            <img id="profileimage" src="images/photo.png" />
+        </div>
+        <div id="optionsbar">
+            <ul id="optionsmenu1">
+                <li id="optionsmenuactive">All</li>
+                <li>News</li>
+                <li>Videos</li>
+                <li>Images</li>
+                <li>Maps</li>
+                <li>More</li>
+            </ul>
+
+            <ul id="optionsmenu2">
+                <li>Settings</li>
+                <li>Tools</li>
+            </ul>
+        </div>
+    </div>
+    <div id="searchresultsarea">
+        <p id="searchresultsnumber">About 155,000 results (0.56 seconds) </p>
+        <div class="searchresult">
+            <h2>Lock (computer science) - Wikipedia</h2>
+            <a>https://en.wikipedia.org/wiki/Lock_(computer_science)</a> <button>▼</button>
+            <p>In computer science, a lock or mutex (from mutual exclusion) is a synchronization mechanism for enforcing limits on access to a resource in an</p>
+            <p> environment where there are many threads of execution.</p>
+        </div>
+
+        <div class="searchresult">
+            <h2>Mutual exclusion - Wikipedia</h2>
+            <a>https://en.wikipedia.org/wiki/Mutual_exclusion</a> <button>▼</button>
+            <p>For the concept in logic and probability theory, see Mutual exclusivity. Two nodes, i and i + 1, being removed simultaneously</p>
+            <p>results in node i + 1 not being removed. In computer science, mutual exclusion is a property of concurrency control, which is instituted ...</p>
+        </div>
+
+        <div class="searchresult">
+            <h2>What is Mutual Exclusion (Mutex)? - Definition from Techopedia</h2>
+            <a>https://www.techopedia.com/definition/25629/mutual-exclusion-mutex</a> <button>▼</button>
+            <p>A mutual exclusion (mutex) is a program object that prevents simultaneous access to a shared resource. This concept is used in concurrent programming with a critical section, a piece of code in which processes or threads access a shared resource. ... This is furnished with algorithms ...</p>
+        </div>
+
+        <div class="searchresult">
+            <h2>Mutex vs Semaphore - GeeksforGeeks</h2>
+            <a>https://www.geeksforgeeks.org/mutex-vs-semaphore/</a> <button>▼</button>
+            <p>It contains well written, well thought and well explained computer science and programming articles, ... The concept can be generalized using semaphore.</p>
+        </div>
+
+        <div class="searchresult">
+            <h2>What is mutex? Webopedia Definition</h2>
+            <a>https://www.webopedia.com/TERM/M/mutex.html</a> <button>▼</button>
+            <p>In computer programming, a mutual exclusion object (mutex) is a program object that allows multiple program threads to share the same resource, such as file access, but not simultaneously.</p>
+        </div>
+
+        <div class="searchresult">
+            <h2>concurrency - Reader and Writer mutex - Computer Science Stack ...</h2>
+            <a>https://cs.stackexchange.com/questions/64815/reader-and-writer-mutex</a> <button>▼</button>
+            <p>Oct 19, 2016 - Lets begin with defining some terms. Semaphore is one form of software implementation for process synchronization. It's an int value that is ...</p>
+        </div>
+
+        <div class="searchresult">
+            <h2>Concurrency (computer science): If a binary semaphore can be used ...</h2>
+            <a>https://www.quora.com/Concurrency-computer-science-If-a-binary-semaphore-can-be-used-to-achieve-mutual-exclusion-then-why-does-the-concept-of-a-mutex-exist</a> <button>▼</button>
+            <p>Mar 29, 2016 - You might want to see What is the difference between a mutex and a semaphore? especially Quora User answer to it. A binary semaphore is semantically same ...</p>
+        </div>
+
+        <div class="searchresult">
+            <h2>What is a mutex? - Stack Overflow</h2>
+            <a>https://stackoverflow.com/questions/34524/what-is-a-mutex</a> <button>▼</button>
+            <p>Actually, this is just extending the analogy, but you get the idea. .... The concept is called "mutual exclusion" (short Mutex), and is a way to ensure that only one ...</p>
+        </div>
+
+        <div class="searchresult">
+            <h2>ELI5: In computer science what is a mutex? : explainlikeimfive ...</h2>
+            <a>https://www.reddit.com/r/explainlikeimfive/comments/29prmj/eli5_in_computer_science_what_is_a_mutex/</a> <button>▼</button>
+            <p>Today's fun fact: The word "mutex" is shorthand for "mutual exclusion". The more you know... A mutex is basically a programmatic device that ...</p>
+        </div>
+
+        <div class="searchresult">
+            <h2>Basics of Mutex and Semaphore (part 1) – geekgirl decodes</h2>
+            <a>https://geekgirldecodes.com/2016/09/13/mutex-and-semaphore/</a> <button>▼</button>
+            <p>Sep 13, 2016 - The age old question of what constitutes a mutex and a semaphore, is one of the most fundamental concepts that computer science engineers ...</p>
+        </div>
+        <div class="relatedsearches">
+            <h3>Searches related to computer engineering mutex concept</h3>
+            <div class="relatedlists">
+                <ul class="relatedleft">
+                    <li>what is <b>mutex</b> and semaphore</li>
+                    <li><b>mutex</b> lock c++</li>
+                    <li><b>mutex</b> java</li>
+                    <li><b>mutex</b> c++</li>
+                </ul>
+                <ul class="relatedright">
+                    <li><b>mutex</b> vs lock</li>
+                    <li><b>mutex</b> semaphore example</li>
+                    <li><b>mutex</b> and semaphore example in c</li>
+                    <li><b>mutex</b> c#</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="pagebar">
+            <ul class="pagelist">
+                <li class="pagelistprevious">Previous</li>
+                <li class="pagelistfirst">1</li>
+                <li class="pagelistnumber">2</li>
+                <li class="pagelistnumber">3</li>
+                <li class="pagelistnumber">4</li>
+                <li class="pagelistnumber">5</li>
+                <li class="pagelistnumber">6</li>
+                <li class="pagelistnumber">7</li>
+                <li class="pagelistnumber">8</li>
+                <li class="pagelistnumber">9</li>
+                <li class="pagelistnumber">10</li>
+                <li class="pagelistnext">Next</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="footer">
+        <div id="footerlocation">
+            <p>Somewhere, Moon </p>
+            <p> - From your phone (Location History) - Use precise location - Learn more</p>
+        </div>
+
+        <ul id="footermenu">
+            <li>Help</li>
+            <li>Send feedback</li>
+            <li>Privacy</li>
+            <li>Terms</li>
+        </ul>
+    </div>
+</body>
+
+</html>

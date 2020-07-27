@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Local Storage</title>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			getData();
+			//chagne qty
+			$('#tbody').on('change','.qty',function(){
+
+				var id=$(this).data('id');
+				var qty=$(this).val();
+				
+				var loitem=localStorage.getItem('item');
+				var itemarr=JSON.parse(loitem);
+				if (qty==0){
+					itemarr.splice(id,1);
+				}
+				itemarr[id].qty=qty;
+				// $.each(itemarr,function(i,v){
+				// 	if (v.id==id){
+				// 		v.qty=qty;
+				// 	}
+				// })
+				localStorage.setItem('item',JSON.stringify(itemarr));
+				getData();
+			})
+
+			//remove item from ls
+			$('#tbody').on('click','.remove',function(){
+				 var id=$(this).data('id');
+
+				 var loitem=localStorage.getItem('item');
+				 var itemarr=JSON.parse(loitem);
+
+				 //delete
+				 // item.splice(id,1);
+			
+				 localStorage.setItem('item', JSON.stringify(itemArr));
+				 getData();
+			})
+
+
+
+
+			//data insert
+			$('.addtocart').click(function(){
+				alert('ok');
+				var id=$(this).data('id');
+				var photo=$(this).data('photo');
+				var name=$(this).data('name');
+				var price=$(this).data('price');
+				alert(`id=${id}, photo=${photo},name=${name},price=${price}`);
+				
+				var item={id:id,name:name,photo:photo,price:price,qty:1};
+				var loitem=localStorage.getItem('item');
+
+				var itemarr;
+				if (loitem==null) {
+					itemarr=Array();
+
+				}
+				else { 
+					itemarr=JSON.parse(loitem);
+					
+				}
+
+				var exist;
+				$.each(itemarr,function(i,v){
+					if(id==v.id){
+						v.qty++;
+						exist=1;
+					}
+				})
+				if (!exist) {
+					itemarr.push(item);
+				}
+				
+				localStorage.setItem('item',JSON.stringify(itemarr));
+				
+				getData();
+			})
+			//get data
+			function getData(){
+				var loitem=localStorage.getItem('item');
+				var html="";
+				var total=0;
+				if (loitem !=null) {
+					itemarr=JSON.parse(loitem);
+					$.each(itemarr,function(i,v){
+						var subtotal=v.qty *v.price;
+						total+=subtotal;
+						html+=`<tr>
+						<td><img src="${v.photo}" width = "200" height="200"></td>
+						<td>${v.name}</td>
+						<td>${v.price}</td>
+						<td><input type="number" value="${v.qty}" class="qty" data-id="${i}" ></td>
+						<td>${subtotal}</td>
+						<td><button class="remove" data-id="${i}"> x </button></td>
+
+						</tr>`
+					})
+
+					html+=`<tr>
+							<td columnSpan ="6">
+								<center>
+									Total:${total}
+								</center>
+							</td>
+							</tr>`
+					$('#tbody').html(html);
+
+				}
+				else{
+
+				}
+			}
+		})
+	</script>
+</head>
+<body>
+	<div>
+		<article>
+			<img src="images/1.jpg" alt="First Item">;
+			<h4>Item1</h4>
+			<p>$10</p>
+			<button data-id="1" data-photo="images/1.jpg" data-name="Item1" data-price="10" class="addtocart">Add to Cart</button>
+		</article>
+			<article>
+			<img src="images/2.jpg" width="200" height="200" alt="Second Item">;
+			<h4>Item2</h4>
+			<p>$5</p>
+			<button data-id="2" data-photo="images/2.jpg" data-name="Item2" data-price="5" class="addtocart">Add to Cart</button>
+		</article>
+			<article>
+			<img src="images/3.jpg" alt="Third Item" width="200" height="200" >;
+			<h4>Item3</h4>
+			<p>$3</p>
+			<button data-id="3" data-photo="images/3.jpg" data-name="Item3" data-price="3"  class="addtocart">Add to Cart</button>
+		</article>
+	</div>
+	<table border="1" cellpadding="10">
+		<thead>
+			<tr>
+				<th>Photo</th>
+				<th>Name</th>
+				<th>Price</th>
+				<th>Quantity</th>
+				<th>SubTotal</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody id="tbody">
+			
+		</tbody>
+	</table>
+</body>
+</html>

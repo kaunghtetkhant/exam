@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+
+	<!-- JS -->
+	<script type="text/javascript" src="bootstrap/js/jquery.min.js"></script>
+
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<title>JQuery HIde and Show</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			$(".d").click(function()
+			{
+				$("p").hide();
+			});
+
+			$(".d1").click(function()
+			{
+				$("p").show();
+			});
+		}); 
+
+		
+		$( "p" ).click(function() {
+  $( this ).toggleClass("highlight");
+});
+
+
+
+	</script>
+
+	<style type="text/css">
+		p {
+    margin: 5px;
+    font-size: 15px;
+    cursor: pointer;
+  }
+
+  .highlight {
+    background: #F4FA58;
+  }
+	</style>
+</head>
+<body>
+<p>This is hide and show paragraph...</p>
+<button class="d">Hide</button>
+<button class="d1">Show</button>
+
+
+<p>Click on the Paragraphs</p>
+<p>jQuery Exercises</p>
+<p>JavaScript Exercises</p>
+
+</body>
+</html>
