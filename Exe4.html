@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Exe4</title>
+
+	<script type="text/javascript">
+		
+function Sum(){
+
+	var first_number=parseInt(document.myform.first_number.value);
+	var second_number=parseInt(document.myform.second_number.value);
+	// console.log(first_number,second_number);
+	var sum=first_number+second_number;
+	// console.log(sum);
+	document.myform.sum.value=sum;
+
+
+	// var sub=first_number-second_number;
+	
+	// document.myform.sub.value=sub;
+
+
+// var mul=first_number*second_number;
+	
+// 	document.myform.mul.value=mul;
+	
+
+// var div=first_number/second_number;
+	
+// 	document.myform.div.value=div.toFixed(2);
+
+// var mod=first_number%second_number;
+	
+// 	document.myform.mod.value=mod;
+
+
+}
+
+	</script>
+</head>
+<body>
+<h1></h1>
+<form name="myform">
+	
+First Number:&nbsp;&nbsp;<input type="Number" name="first_number"><br><br>
+
+Second Number:<input type="Number" name="second_number"><br><br>
+<input type="button" name="" value="Calculate" onclick="Sum()"> <br>
+ The result is <input type="Number" name="sum"><br>
+ <!-- Sub: <input type="Number" name="sub"><br>
+  Mul :<input type="Number" name="mul"><br>
+   Div: <input type="Number" name="div"><br>
+    Mod: <input type="Number" name="mod"><br> -->
+</form>
+</body>
+</html>
