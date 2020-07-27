@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Exam</title>
+
+<script type="text/javascript">
+rt(num1+ 'is EVEN');
+	// }
+function show()
+{
+
+	var teamA=parseInt(document.myform.teamA.value);
+	var teamB=parseInt(document.myform.teamB.value);
+
+
+	if ((teamA>=teamB)) {
+
+		document.getElementById('result').textContent=' Team A got 3 Points and Team B got 0 Point!';
+	}else{
+		document.getElementById('result').textContent='Team B got 3 Points and Team A got 0 Point!';
+	}
+	if((teamA==teamB))
+	{
+		document.getElementById('result').textContent='1 Point for both because they got draw'
+	}
+
+
+}
+
+
+</script>
+</head>
+<body>
+
+<h1>Enter Goal Numbers of Team A and Team B</h1>
+<form name="myform">
+	
+Team A:<input type="number" name="teamA"><br><br>
+Team B<input type="number" name="teamB"><br><br>
+
+<input type="button" name="" value="Show" onclick="show()"><br>
+
+Result:<label id="result"> </label>
+
+</form>
+</body>
+</html>
